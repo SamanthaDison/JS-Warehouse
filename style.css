@@ -1,0 +1,9 @@
+main{
+    min-height: 100vh;
+}
+
+button{
+    padding-left: 2em;
+    padding-right: 2em;
+    margin: 3em;
+}
