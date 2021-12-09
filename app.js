@@ -51,10 +51,14 @@ const packages = [
     }
 ]
 
+let random = packages[Math.floor(Math.random() * packages.length)]
+console.log(random)
+filtered = packages
+
 function draw() {
     let template = ''
-    for (let i = 0; i < packages.length; i++) {
-        let package = packages[i]
+    for (let i = 0; i < filtered.length; i++) {
+        let package = filtered[i]
         template += `<li>To: ${package.to} Tracking Number: ${package.trackingNumber}</li>`
         // if (package.heavy) {
         //     template += `<li>Package Weight: Heavy </li>`
@@ -66,42 +70,48 @@ function draw() {
 }
 
 function filterHeavy(heavy) {
-    let heavyPckge = packages.filter(heavyPckge => heavyPckge.heavy == heavy)
+    filtered = filtered.filter(heavyPckge => heavyPckge.heavy == random.heavy)
     let template = ''
-    for (let i = 0; i < heavyPckge.length; i++) {
-        let package = heavyPckge[i];
+    for (let i = 0; i < filtered.length; i++) {
+        let package = filtered[i];
         template += `<li>To: ${package.to} Tracking Number: ${package.trackingNumber}</li>`
     }
     document.getElementById('pckge').innerHTML = template
 }
 
 function filterPriority(priority) {
-    let impPckge = packages.filter(impPckge => impPckge.priority == priority)
+    filtered = filtered.filter(impPckge => impPckge.priority == random.priority)
     let template = ''
-    for (let i = 0; i < impPckge.length; i++) {
-        let package = impPckge[i];
+    for (let i = 0; i < filtered.length; i++) {
+        let package = filtered[i];
         template += `<li>To: ${package.to} Tracking Number: ${package.trackingNumber}</li>`
     }
     document.getElementById('pckge').innerHTML = template
 }
 
 function filterFragile(fragile) {
-    let fragilePckge = packages.filter(fragilePckge => fragilePckge.fragile == fragile)
+    filtered = filtered.filter(fragilePckge => fragilePckge.fragile == random.fragile)
     let template = ''
-    for (let i = 0; i < fragilePckge.length; i++) {
-        let package = fragilePckge[i];
+    for (let i = 0; i < filtered.length; i++) {
+        let package = filtered[i];
         template += `<li>To: ${package.to} Tracking Number: ${package.trackingNumber}</li>`
     }
     document.getElementById('pckge').innerHTML = template
 }
 
 // function random() {
-//     let randomPckge = Object.keys(packages);
-//     let random = randomPckge[Math.floor(Math.random() * randomPckge.length)];
+//     let random = packages[Math.floor(Math.random() * randomPckge.length)];
 //     let template = ''
 //     template += `<li>To: ${package.to} Tracking Number: ${package.trackingNumber}</li>`
 //     document.getElementById('pckge').innerHTML = template
 // }
+
+function reset() {
+    filtered = packages
+    random = packages[Math.floor(Math.random() * packages.length)]
+    console.log('new rando')
+    draw()
+}
 
 
 draw()
